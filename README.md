@@ -33,7 +33,7 @@ Identifies the Top 10 NSE stocks most likely to produce profitable intraday oppo
 - Walk-forward backtesting
 
 ## Installation
-
+''
 ```bash
 # Create virtual environment
 python -m venv .venv
