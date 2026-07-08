@@ -1,0 +1,192 @@
+# =====================================================
+# RSA QuickTrade — Configuration
+# =====================================================
+
+# --- Universe Filters ---
+universe:
+  min_avg_daily_volume: 500000
+  min_price: 50.0
+  prefer_fno: true
+  max_stocks: 250
+
+# --- Data Download ---
+data:
+  daily_period: "2y"
+  weekly_period: "2y"
+  hourly_period: "60d"
+  download_chunk_size: 50
+  download_delay_seconds: 1.0
+  max_retries: 3
+  retry_backoff_factor: 2.0
+
+# --- Cache ---
+cache:
+  enabled: true
+  directory: ".cache/rsa_quicktrade"
+  daily_ttl_hours: 4
+  option_ttl_hours: 1
+  delivery_ttl_hours: 12
+
+# --- Logging ---
+logging:
+  console_level: "INFO"
+  file_level: "DEBUG"
+  log_file: "output/rsa_quicktrade.log"
+
+# --- Module Weights (must sum to 100) ---
+weights:
+  trend: 15
+  momentum: 12
+  volatility: 8
+  volume: 15
+  price_action: 10
+  candlestick: 5
+  chart_patterns: 5
+  fibonacci: 3
+  ichimoku: 5
+  market_breadth: 5
+  options: 12
+  statistics: 5
+
+# --- Trend Analysis ---
+trend:
+  ema_periods: [20, 50, 100, 200]
+  adx_period: 14
+  adx_strong_threshold: 25
+  adx_very_strong_threshold: 40
+  slope_period: 20
+  swing_lookback: 5
+
+# --- Momentum ---
+momentum:
+  rsi_period: 14
+  rsi_overbought: 70
+  rsi_oversold: 30
+  stoch_rsi_period: 14
+  stoch_rsi_k: 3
+  stoch_rsi_d: 3
+  macd_fast: 12
+  macd_slow: 26
+  macd_signal: 9
+  cci_period: 20
+  cci_overbought: 100
+  cci_oversold: -100
+  roc_period: 12
+  divergence_lookback: 50
+
+# --- Volatility ---
+volatility:
+  atr_period: 14
+  bb_period: 20
+  bb_std: 2.0
+  keltner_period: 20
+  keltner_atr_mult: 1.5
+  historical_vol_period: 20
+  nr_lookback_4: 4
+  nr_lookback_7: 7
+  wide_range_atr_mult: 1.5
+  gap_threshold_pct: 0.5
+
+# --- Volume ---
+volume:
+  avg_period: 20
+  spike_multiplier: 2.0
+  dryup_threshold: 0.5
+  climax_volume_mult: 3.0
+  cmf_period: 20
+  mfi_period: 14
+  delivery_lookback: 10
+  delivery_increase_threshold: 5.0
+
+# --- Price Action ---
+price_action:
+  swing_order: 5
+  support_resistance_lookback: 100
+  breakout_volume_mult: 1.5
+  false_breakout_pct: 0.5
+  consolidation_atr_mult: 0.5
+  level_cluster_pct: 1.0
+
+# --- Candlestick ---
+candlestick:
+  context_lookback: 20
+  confirmation_candles: 1
+  volume_confirmation_mult: 1.2
+
+# --- Chart Patterns ---
+chart_patterns:
+  lookback_periods: [20, 50, 100, 250]
+  pivot_order: 10
+  tolerance_pct: 2.0
+  min_pattern_bars: 10
+  strictness: "moderate"   # conservative / moderate / liberal
+
+# --- Fibonacci ---
+fibonacci:
+  retracement_levels: [0.236, 0.382, 0.5, 0.618, 0.786]
+  extension_levels: [1.272, 1.618, 2.0, 2.618]
+  swing_order: 20
+  confluence_threshold_pct: 1.0
+
+# --- Ichimoku ---
+ichimoku:
+  tenkan_period: 9
+  kijun_period: 26
+  senkou_b_period: 52
+  displacement: 26
+
+# --- Market Breadth ---
+market_breadth:
+  rs_period: 50
+  rs_momentum_period: 10
+  benchmark_index: "^NSEI"
+
+# --- Options ---
+options:
+  strikes_range: 2  # ATM ± N
+  unusual_oi_std: 2.0
+  iv_rank_period: 252
+  enabled: true
+
+# --- Statistics ---
+statistics:
+  similarity_window: 20
+  min_correlation: 0.7
+  forward_periods: [1, 5, 20]
+  min_similar_matches: 5
+
+# --- Scoring ---
+scoring:
+  min_confirmations: 3
+  top_n: 10
+  min_overall_score: 40.0
+
+# --- Trade Setup ---
+trade_setup:
+  atr_sl_multiplier: 1.5
+  target_1_rr: 1.5
+  target_2_rr: 2.5
+  target_3_rr: 4.0
+  aggressive_entry_offset_atr: 0.3
+  conservative_entry_offset_atr: 0.5
+
+# --- Visualization ---
+visualization:
+  style: "yahoo"
+  dpi: 300
+  width: 20
+  height: 14
+  output_dir: "output/charts"
+
+# --- Backtesting ---
+backtesting:
+  lookback_period: "2y"
+  walk_forward_window: 20
+  commission_pct: 0.03
+  slippage_pct: 0.05
+  output_dir: "output/backtests"
+
+# --- Output ---
+output:
+  report_dir: "output/reports"
+  format: "console"  # console / json / csv / all

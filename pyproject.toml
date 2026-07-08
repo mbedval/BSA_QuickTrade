@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "rsa-quicktrade"
+version = "1.0.0"
+description = "Institutional-quality NSE stock screening and analysis framework"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "RSA QuickTrade Team"},
+]
+
+dependencies = [
+    # Data
+    "yfinance>=0.2.30",
+    "pandas>=2.0",
+    "numpy>=1.24",
+
+    # Technical Analysis
+    "pandas-ta-classic>=0.1.0",
+    "scipy>=1.11",
+
+    # NSE-specific
+    "nsepython>=2.9",
+    "nselib>=2.0.0",
+
+    # Visualization
+    "mplfinance>=0.12.10b0",
+    "matplotlib>=3.7",
+
+    # CLI & Output
+    "rich>=13.0",
+
+    # Configuration
+    "pyyaml>=6.0",
+
+    # Caching
+    "diskcache>=5.6",
+
+    # HTTP
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+]
+
+[project.scripts]
+rsa-quicktrade = "rsa_quicktrade.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"

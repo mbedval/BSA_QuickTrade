@@ -1,0 +1,35 @@
+# RSA QuickTrade - Required Pip Packages
+# Install with: pip install -r requirements.txt
+
+# Core Data & Math
+numpy>=1.24
+pandas>=2.0
+scipy>=1.11
+
+# Data Retrieval & APIs
+yfinance>=0.2.30
+requests>=2.31
+
+# NSE India Specific Data Fetchers
+nsepython>=2.9
+nselib>=2.0.0
+
+# Technical Analysis Indicators
+pandas-ta-classic>=0.1.0
+
+# Caching Mechanism
+diskcache>=5.6
+
+# Configuration File Support
+pyyaml>=6.0
+
+# Interactive CLI formatting
+rich>=13.0
+
+# Charts & Visualization
+matplotlib>=3.7
+mplfinance>=0.12.10b0
+
+# Optional Development Tools (Uncomment if running tests)
+# pytest>=7.4
+# pytest-cov>=4.1

@@ -1,0 +1,10 @@
+output/charts/
+venv
+src/rsa_quicktrade/__pycache__
+src/rsa_quicktrade/analyzers/__pycache__/
+src/rsa_quicktrade/data/__pycache__/
+src/rsa_quicktrade/core/__pycache__/
+src/rsa_quicktrade/scoring/__pycache__/
+src/rsa_quicktrade/output/__pycache__/
+src/rsa_quicktrade/backtesting/__pycache__/
+tests/__init__.py
