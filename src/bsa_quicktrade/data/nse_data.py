@@ -12,7 +12,7 @@ from typing import Any
 
 import pandas as pd
 
-from rsa_quicktrade.core.cache import DataCache
+from bsa_quicktrade.core.cache import DataCache
 
 logger = logging.getLogger(__name__)
 

@@ -48,30 +48,30 @@ pip install -e ".[dev]"
 
 ### Full Market Scan (Primary Use Case)
 ```bash
-python -m rsa_quicktrade scan
+python -m bsa_quicktrade scan
 ```
 Scans ~200 NSE stocks and outputs the Top 10 opportunities.
 
 ### Single Stock Deep-Dive
 ```bash
-python -m rsa_quicktrade analyze RELIANCE
+python -m bsa_quicktrade analyze RELIANCE
 ```
 
 ### Generate Charts Only
 ```bash
-python -m rsa_quicktrade chart TATAMOTORS
+python -m bsa_quicktrade chart TATAMOTORS
 ```
 
 ### Backtest Modules
 ```bash
-python -m rsa_quicktrade backtest RELIANCE
+python -m bsa_quicktrade backtest RELIANCE
 ```
 
 ### CLI Options
 ```bash
-python -m rsa_quicktrade scan --top 20          # Top 20 instead of 10
-python -m rsa_quicktrade scan --min-volume 1000000  # Higher volume filter
-python -m rsa_quicktrade scan -c config/custom.yaml # Custom config
+python -m bsa_quicktrade scan --top 20          # Top 20 instead of 10
+python -m bsa_quicktrade scan --min-volume 1000000  # Higher volume filter
+python -m bsa_quicktrade scan -c config/custom.yaml # Custom config
 ```
 
 ## Configuration
@@ -99,14 +99,14 @@ universe:
 
 ### Environment Variable Overrides
 ```bash
-RSA_SCORING__TOP_N=20 python -m rsa_quicktrade scan
-RSA_UNIVERSE__MIN_PRICE=100 python -m rsa_quicktrade scan
+RSA_SCORING__TOP_N=20 python -m bsa_quicktrade scan
+RSA_UNIVERSE__MIN_PRICE=100 python -m bsa_quicktrade scan
 ```
 
 ## Architecture
 
 ```
-src/rsa_quicktrade/
+src/bsa_quicktrade/
 ├── core/            # Config, models, constants, cache, logging
 ├── data/            # yfinance downloader, universe manager, NSE data
 ├── analyzers/       # 12 independent analysis modules

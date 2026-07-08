@@ -9,8 +9,8 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from rsa_quicktrade.analyzers.base import BaseAnalyzer
-from rsa_quicktrade.core.models import AnalysisResult, StockData
+from bsa_quicktrade.analyzers.base import BaseAnalyzer
+from bsa_quicktrade.core.models import AnalysisResult, StockData
 
 
 class MarketBreadthAnalyzer(BaseAnalyzer):

@@ -34,7 +34,7 @@ class DataConfig:
 @dataclass
 class CacheConfig:
     enabled: bool = True
-    directory: str = ".cache/rsa_quicktrade"
+    directory: str = ".cache/bsa_quicktrade"
     daily_ttl_hours: int = 4
     option_ttl_hours: int = 1
     delivery_ttl_hours: int = 12
@@ -44,7 +44,7 @@ class CacheConfig:
 class LoggingConfig:
     console_level: str = "INFO"
     file_level: str = "DEBUG"
-    log_file: str = "output/rsa_quicktrade.log"
+    log_file: str = "output/bsa_quicktrade.log"
 
 
 @dataclass

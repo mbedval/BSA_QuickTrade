@@ -22,7 +22,7 @@ data:
 # --- Cache ---
 cache:
   enabled: true
-  directory: ".cache/rsa_quicktrade"
+  directory: ".cache/bsa_quicktrade"
   daily_ttl_hours: 4
   option_ttl_hours: 1
   delivery_ttl_hours: 12
@@ -31,7 +31,7 @@ cache:
 logging:
   console_level: "INFO"
   file_level: "DEBUG"
-  log_file: "output/rsa_quicktrade.log"
+  log_file: "output/bsa_quicktrade.log"
 
 # --- Module Weights (must sum to 100) ---
 weights:

@@ -3,7 +3,7 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.backends._legacy:_Backend"
 
 [project]
-name = "rsa-quicktrade"
+name = "bsa-quicktrade"
 version = "1.0.0"
 description = "Institutional-quality NSE stock screening and analysis framework"
 readme = "README.md"
@@ -51,7 +51,7 @@ dev = [
 ]
 
 [project.scripts]
-rsa-quicktrade = "rsa_quicktrade.main:main"
+bsa-quicktrade = "bsa_quicktrade.main:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

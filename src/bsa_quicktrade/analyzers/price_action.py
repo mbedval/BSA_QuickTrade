@@ -11,8 +11,8 @@ import pandas as pd
 import pandas_ta_classic as ta  # type: ignore[import-untyped]
 from scipy.signal import argrelextrema
 
-from rsa_quicktrade.analyzers.base import BaseAnalyzer
-from rsa_quicktrade.core.models import AnalysisResult, PriceLevel, StockData
+from bsa_quicktrade.analyzers.base import BaseAnalyzer
+from bsa_quicktrade.core.models import AnalysisResult, PriceLevel, StockData
 
 
 class PriceActionAnalyzer(BaseAnalyzer):

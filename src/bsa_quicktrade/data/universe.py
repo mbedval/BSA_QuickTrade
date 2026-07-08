@@ -7,8 +7,8 @@ import logging
 import numpy as np
 import pandas as pd
 
-from rsa_quicktrade.core.config import AppConfig
-from rsa_quicktrade.core.constants import (
+from bsa_quicktrade.core.config import AppConfig
+from bsa_quicktrade.core.constants import (
     get_fno_symbols,
     get_sector,
     to_yfinance_ticker,

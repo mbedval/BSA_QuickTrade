@@ -10,8 +10,8 @@ import numpy as np
 import pandas as pd
 from scipy.signal import argrelextrema
 
-from rsa_quicktrade.analyzers.base import BaseAnalyzer
-from rsa_quicktrade.core.models import AnalysisResult, PriceLevel, StockData
+from bsa_quicktrade.analyzers.base import BaseAnalyzer
+from bsa_quicktrade.core.models import AnalysisResult, PriceLevel, StockData
 
 
 class FibonacciAnalyzer(BaseAnalyzer):

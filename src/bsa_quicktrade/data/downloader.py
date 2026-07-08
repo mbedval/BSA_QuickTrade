@@ -15,8 +15,8 @@ import pandas as pd
 import yfinance as yf
 from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn, TimeRemainingColumn
 
-from rsa_quicktrade.core.cache import DataCache
-from rsa_quicktrade.core.config import AppConfig
+from bsa_quicktrade.core.cache import DataCache
+from bsa_quicktrade.core.config import AppConfig
 
 logger = logging.getLogger(__name__)
 

@@ -10,7 +10,7 @@ from pathlib import Path
 def setup_logging(
     console_level: str = "INFO",
     file_level: str = "DEBUG",
-    log_file: str = "output/rsa_quicktrade.log",
+    log_file: str = "output/bsa_quicktrade.log",
 ) -> None:
     """Configure the root logger with console and file handlers."""
     root = logging.getLogger()

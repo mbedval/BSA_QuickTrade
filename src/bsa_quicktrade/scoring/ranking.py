@@ -13,8 +13,8 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from rsa_quicktrade.core.config import AppConfig
-from rsa_quicktrade.core.models import (
+from bsa_quicktrade.core.config import AppConfig
+from bsa_quicktrade.core.models import (
     AnalysisResult,
     ExpectedRange,
     PriceLevel,

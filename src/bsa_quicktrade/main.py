@@ -4,10 +4,10 @@ Orchestrates the full pipeline: universe → download → analyze → score → 
 
 Usage::
 
-    python -m rsa_quicktrade scan
-    python -m rsa_quicktrade analyze RELIANCE
-    python -m rsa_quicktrade chart RELIANCE
-    python -m rsa_quicktrade backtest
+    python -m bsa_quicktrade scan
+    python -m bsa_quicktrade analyze RELIANCE
+    python -m bsa_quicktrade chart RELIANCE
+    python -m bsa_quicktrade backtest
 """
 
 from __future__ import annotations
@@ -22,11 +22,11 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, TextColumn
 
-from rsa_quicktrade.core.cache import DataCache
-from rsa_quicktrade.core.config import AppConfig, load_config
-from rsa_quicktrade.core.constants import get_sector, to_yfinance_ticker
-from rsa_quicktrade.core.logging_config import setup_logging
-from rsa_quicktrade.core.models import AnalysisResult, StockAnalysis, StockData
+from bsa_quicktrade.core.cache import DataCache
+from bsa_quicktrade.core.config import AppConfig, load_config
+from bsa_quicktrade.core.constants import get_sector, to_yfinance_ticker
+from bsa_quicktrade.core.logging_config import setup_logging
+from bsa_quicktrade.core.models import AnalysisResult, StockAnalysis, StockData
 
 console = Console()
 logger = logging.getLogger(__name__)
@@ -36,18 +36,18 @@ logger = logging.getLogger(__name__)
 
 def _build_analyzers(config: AppConfig):
     """Instantiate all 12 analysis modules."""
-    from rsa_quicktrade.analyzers.trend import TrendAnalyzer
-    from rsa_quicktrade.analyzers.momentum import MomentumAnalyzer
-    from rsa_quicktrade.analyzers.volatility import VolatilityAnalyzer
-    from rsa_quicktrade.analyzers.volume import VolumeAnalyzer
-    from rsa_quicktrade.analyzers.price_action import PriceActionAnalyzer
-    from rsa_quicktrade.analyzers.candlestick import CandlestickAnalyzer
-    from rsa_quicktrade.analyzers.chart_patterns import ChartPatternAnalyzer
-    from rsa_quicktrade.analyzers.fibonacci import FibonacciAnalyzer
-    from rsa_quicktrade.analyzers.ichimoku import IchimokuAnalyzer
-    from rsa_quicktrade.analyzers.market_breadth import MarketBreadthAnalyzer
-    from rsa_quicktrade.analyzers.options import OptionsAnalyzer
-    from rsa_quicktrade.analyzers.statistics import StatisticalAnalyzer
+    from bsa_quicktrade.analyzers.trend import TrendAnalyzer
+    from bsa_quicktrade.analyzers.momentum import MomentumAnalyzer
+    from bsa_quicktrade.analyzers.volatility import VolatilityAnalyzer
+    from bsa_quicktrade.analyzers.volume import VolumeAnalyzer
+    from bsa_quicktrade.analyzers.price_action import PriceActionAnalyzer
+    from bsa_quicktrade.analyzers.candlestick import CandlestickAnalyzer
+    from bsa_quicktrade.analyzers.chart_patterns import ChartPatternAnalyzer
+    from bsa_quicktrade.analyzers.fibonacci import FibonacciAnalyzer
+    from bsa_quicktrade.analyzers.ichimoku import IchimokuAnalyzer
+    from bsa_quicktrade.analyzers.market_breadth import MarketBreadthAnalyzer
+    from bsa_quicktrade.analyzers.options import OptionsAnalyzer
+    from bsa_quicktrade.analyzers.statistics import StatisticalAnalyzer
 
     return [
         TrendAnalyzer(config),
@@ -69,8 +69,8 @@ def _build_analyzers(config: AppConfig):
 
 def _download_all(config: AppConfig, cache: DataCache, tickers: list[str], filter_liquidity: bool = False):
     """Download all required data."""
-    from rsa_quicktrade.data.downloader import DataDownloader
-    from rsa_quicktrade.data.nse_data import NSEDataFetcher
+    from bsa_quicktrade.data.downloader import DataDownloader
+    from bsa_quicktrade.data.nse_data import NSEDataFetcher
 
     dl = DataDownloader(config, cache)
     nse = NSEDataFetcher(cache)
@@ -85,7 +85,7 @@ def _download_all(config: AppConfig, cache: DataCache, tickers: list[str], filte
 
     # Filter by liquidity first to avoid slow option/delivery downloads for illiquid stocks
     if filter_liquidity:
-        from rsa_quicktrade.data.universe import UniverseManager
+        from bsa_quicktrade.data.universe import UniverseManager
         universe = UniverseManager(config)
         tickers = universe.filter_by_liquidity(tickers, daily)
 
@@ -141,7 +141,7 @@ def _analyze_all(
     stock_data: dict[str, StockData],
 ) -> list[StockAnalysis]:
     """Run all 12 analyzers on every stock and aggregate scores."""
-    from rsa_quicktrade.scoring.ranking import RankingEngine
+    from bsa_quicktrade.scoring.ranking import RankingEngine
 
     ranking = RankingEngine(config)
     analyses: list[StockAnalysis] = []
@@ -177,8 +177,8 @@ def _analyze_all(
 
 def _rank_and_report(config: AppConfig, analyses: list[StockAnalysis]):
     """Rank stocks and generate report."""
-    from rsa_quicktrade.scoring.ranking import RankingEngine
-    from rsa_quicktrade.output.report import ReportGenerator
+    from bsa_quicktrade.scoring.ranking import RankingEngine
+    from bsa_quicktrade.output.report import ReportGenerator
 
     console.print("[bold cyan]Phase 3/4: Ranking and scoring …[/]")
 
@@ -197,7 +197,7 @@ def _rank_and_report(config: AppConfig, analyses: list[StockAnalysis]):
 
 def _generate_charts(config: AppConfig, stock_data: dict[str, StockData], top_stocks: list[StockAnalysis]):
     """Generate charts for top-ranked stocks."""
-    from rsa_quicktrade.output.visualization import ChartGenerator
+    from bsa_quicktrade.output.visualization import ChartGenerator
 
     console.print("[bold cyan]Generating charts …[/]")
     chart_gen = ChartGenerator(config)
@@ -218,7 +218,7 @@ def _generate_charts(config: AppConfig, stock_data: dict[str, StockData], top_st
 
 def cmd_scan(args: argparse.Namespace, config: AppConfig) -> None:
     """Full scan — download, analyze, rank, report."""
-    from rsa_quicktrade.data.universe import UniverseManager
+    from bsa_quicktrade.data.universe import UniverseManager
 
     cache = DataCache(
         directory=config.cache.directory,
@@ -276,7 +276,7 @@ def cmd_analyze(args: argparse.Namespace, config: AppConfig) -> None:
         analyses = _analyze_all(config, analyzers, stock_data)
 
         if analyses:
-            from rsa_quicktrade.output.report import ReportGenerator
+            from bsa_quicktrade.output.report import ReportGenerator
             report = ReportGenerator(config)
             ticker_clean = args.ticker.upper().replace(".NS", "")
             prefix = f"{ticker_clean.title()}_"
@@ -298,7 +298,7 @@ def cmd_chart(args: argparse.Namespace, config: AppConfig) -> None:
     try:
         stock_data = _download_all(config, cache, [ticker])
         if ticker in stock_data:
-            from rsa_quicktrade.output.visualization import ChartGenerator
+            from bsa_quicktrade.output.visualization import ChartGenerator
             chart_gen = ChartGenerator(config)
             path = chart_gen.generate_chart(stock_data[ticker])
             if path:
@@ -309,7 +309,7 @@ def cmd_chart(args: argparse.Namespace, config: AppConfig) -> None:
 
 def cmd_backtest(args: argparse.Namespace, config: AppConfig) -> None:
     """Run backtesting on a sample stock."""
-    from rsa_quicktrade.backtesting.engine import BacktestEngine
+    from bsa_quicktrade.backtesting.engine import BacktestEngine
     from rich.table import Table
 
     ticker = getattr(args, "ticker", "RELIANCE")
@@ -375,7 +375,7 @@ def cmd_backtest(args: argparse.Namespace, config: AppConfig) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="rsa-quicktrade",
+        prog="bsa-quicktrade",
         description="RSA QuickTrade — Institutional-Quality NSE Stock Screener",
     )
     parser.add_argument(

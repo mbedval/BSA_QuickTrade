@@ -21,7 +21,7 @@ class DataCache:
 
     def __init__(
         self,
-        directory: str = ".cache/rsa_quicktrade",
+        directory: str = ".cache/bsa_quicktrade",
         enabled: bool = True,
         daily_ttl_hours: int = 4,
         option_ttl_hours: int = 1,

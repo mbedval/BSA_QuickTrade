@@ -8,8 +8,8 @@ from __future__ import annotations
 
 import numpy as np
 
-from rsa_quicktrade.analyzers.base import BaseAnalyzer
-from rsa_quicktrade.core.models import AnalysisResult, PriceLevel, StockData
+from bsa_quicktrade.analyzers.base import BaseAnalyzer
+from bsa_quicktrade.core.models import AnalysisResult, PriceLevel, StockData
 
 
 class OptionsAnalyzer(BaseAnalyzer):
