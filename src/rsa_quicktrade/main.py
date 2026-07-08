@@ -278,7 +278,9 @@ def cmd_analyze(args: argparse.Namespace, config: AppConfig) -> None:
         if analyses:
             from rsa_quicktrade.output.report import ReportGenerator
             report = ReportGenerator(config)
-            report.generate(analyses)
+            ticker_clean = args.ticker.upper().replace(".NS", "")
+            prefix = f"{ticker_clean.title()}_"
+            report.generate(analyses, filename_prefix=prefix)
 
             _generate_charts(config, stock_data, analyses)
     finally:

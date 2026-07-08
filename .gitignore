@@ -7,4 +7,7 @@ src/rsa_quicktrade/scoring/__pycache__/
 src/rsa_quicktrade/output/__pycache__/
 src/rsa_quicktrade/backtesting/__pycache__/
 tests/__init__.py
-output/
+output
+src/rsa_quicktrade/output/report.py
+.cache/
+output/rsa_quicktrade.log

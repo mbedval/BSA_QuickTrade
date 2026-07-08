@@ -35,7 +35,7 @@ class ReportGenerator:
 
     # ── Main Entry ──────────────────────────────────────────────────────
 
-    def generate(self, ranked: list[StockAnalysis]) -> None:
+    def generate(self, ranked: list[StockAnalysis], filename_prefix: str = "") -> None:
         """Generate the full report — console + file exports."""
         if not ranked:
             console.print("[bold red]No stocks met the selection criteria.[/]")
@@ -57,7 +57,7 @@ class ReportGenerator:
             self._export_csv(ranked)
         
         # HTML export (always generated for visual dashboards)
-        self._export_html(ranked)
+        self._export_html(ranked, filename_prefix=filename_prefix)
 
     # ── Header / Footer ────────────────────────────────────────────────
 
@@ -288,7 +288,7 @@ class ReportGenerator:
                 })
         logger.info("CSV report saved to %s", path)
 
-    def _export_html(self, ranked: list[StockAnalysis]) -> None:
+    def _export_html(self, ranked: list[StockAnalysis], filename_prefix: str = "") -> None:
         """Export the scan results to a beautiful, modern HTML dashboard."""
         import html
 
@@ -1012,17 +1012,17 @@ class ReportGenerator:
 
         # Write to outputs
         # 1. Output directory
-        path_dir = self.output_dir / f"report_{datetime.now():%Y%m%d_%H%M%S}.html"
+        path_dir = self.output_dir / f"{filename_prefix}report_{datetime.now():%Y%m%d_%H%M%S}.html"
         with open(path_dir, "w", encoding="utf-8") as f:
             f.write(html_content)
         logger.info("HTML report saved to %s", path_dir)
 
         # 2. Workspace root directory (as quicktrade_scan.html)
-        path_root = Path("quicktrade_scan.html")
+        path_root = Path(f"{filename_prefix}quicktrade_scan.html")
         with open(path_root, "w", encoding="utf-8") as f:
             f.write(html_content)
         logger.info("HTML report saved to workspace root as %s", path_root)
-        console.print(f"[green]✓ HTML report generated at [bold]quicktrade_scan.html[/][/]")
+        console.print(f"[green]✓ HTML report generated at [bold]{path_root}[/][/]")
 
     @staticmethod
     def _analysis_to_dict(a: StockAnalysis) -> dict[str, Any]:
