@@ -9,3 +9,5 @@ src/bsa_quicktrade/output/__pycache__/
 src/bsa_quicktrade/backtesting/__pycache__/
 tests/__pycache__/
 output/
+src/bsa_quicktrade/analytics/__pycache__/*
+.cache/bsa_quicktrade/cache.db
