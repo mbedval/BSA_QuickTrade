@@ -1,4 +1,4 @@
-venv
+.venv
 src/bsa_quicktrade/__pycache__
 src/bsa_quicktrade/entry/__pycache__/
 src/bsa_quicktrade/analyzers/__pycache__/
@@ -7,16 +7,5 @@ src/bsa_quicktrade/core/__pycache__/
 src/bsa_quicktrade/scoring/__pycache__/
 src/bsa_quicktrade/output/__pycache__/
 src/bsa_quicktrade/backtesting/__pycache__/
-tests/__init__.py
-output
-src/bsa_quicktrade/output/report.py
-.cache/
-output/bsa_quicktrade.log
-src/bsa_quicktrade/analytics/__pycache__/*
-src/bsa_quicktrade/analytics/__pycache__/__init__.cpython-312.pyc
-src/bsa_quicktrade/analytics/__pycache__/analytics.cpython-312.pyc
-tests/analytics/__pycache__/test_task4.cpython-312-pytest-9.1.1.pyc
-src/bsa_quicktrade/analytics/__pycache__/
-tests/analytics/__pycache__/test_task4.cpython-312-pytest-9.1.1.pyc
-.venv-local
-src/bsa_quicktrade/exit/__init__.py
+tests/__pycache__/
+output/
